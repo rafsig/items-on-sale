@@ -16,7 +16,19 @@ public class Category {
 	@GeneratedValue(strategy=GenerationType.IDENTITY )
 	private long id;
 	private String name;
-	@ManyToMany
+	@ManyToMany(mappedBy = "category")
 	@Column(name = "item")
 	private List<Item> itemList;
+	
+	public long getId() {
+		return id;
+	}
+	public String getName() {
+		return name;
+	}
+	public List<Item> getItemList() {
+		return itemList;
+	}
+	
+	
 }

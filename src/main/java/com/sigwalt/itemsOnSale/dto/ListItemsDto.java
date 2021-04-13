@@ -1,4 +1,4 @@
-package com.sigwalt.itemsOnSale.dao;
+package com.sigwalt.itemsOnSale.dto;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -8,9 +8,9 @@ import javax.persistence.ManyToMany;
 
 import com.sigwalt.itemsOnSale.model.Category;
 import com.sigwalt.itemsOnSale.model.Item;
-import com.sigwalt.itemsOnSale.model.Order;
+import com.sigwalt.itemsOnSale.model.PlacedOrder;
 
-public class ListItemsDao {
+public class ListItemsDto {
 
 	private long id;
 	private String name;
@@ -19,7 +19,7 @@ public class ListItemsDao {
 	private BigDecimal discount = BigDecimal.ZERO;
 	private int rating;
 	
-	public ListItemsDao(Item item) {
+	public ListItemsDto(Item item) {
 		this.id = item.getId();
 		this.name = item.getName();
 		this.price = item.getPrice();
@@ -28,7 +28,6 @@ public class ListItemsDao {
 		this.rating = item.getRating();
 	}
 	
-
 	public long getId() {
 		return id;
 	}
@@ -53,8 +52,8 @@ public class ListItemsDao {
 		return rating;
 	}
 	
-	public static List<ListItemsDao> convert(List<Item> itemsList){
-		return itemsList.stream().map(ListItemsDao::new).collect(Collectors.toList());
+	public static List<ListItemsDto> convert(List<Item> itemsList){
+		return itemsList.stream().map(ListItemsDto::new).collect(Collectors.toList());
 	}
 
 }

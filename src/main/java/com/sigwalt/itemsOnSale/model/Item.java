@@ -23,8 +23,9 @@ public class Item {
 	private int rating;
 	@ManyToMany
 	private List<Category> category;
-	@ManyToMany(targetEntity = Order.class, mappedBy = "item")
-	private List<Order> order;
+	@ManyToMany(targetEntity = PlacedOrder.class, mappedBy = "item")
+	private List<PlacedOrder> order;
+	
 	public long getId() {
 		return id;
 	}
@@ -46,7 +47,7 @@ public class Item {
 	public List<Category> getCategory() {
 		return category;
 	}
-	public List<Order> getOrder() {
+	public List<PlacedOrder> getOrder() {
 		return order;
 	}
 	

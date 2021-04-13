@@ -3,6 +3,7 @@ package com.sigwalt.itemsOnSale.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ public class WishList {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY )
 	private long id;
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Item> itemList;
 	
 	public long getId() {

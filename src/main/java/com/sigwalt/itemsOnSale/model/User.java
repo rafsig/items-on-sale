@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,10 +21,10 @@ public class User {
 	private String userName;
 	private String email;
 	private String password;
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	private WishList wishList;
-	@OneToMany
-	private List<Order> orderList;
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	private List<PlacedOrder> orderList;
 	
 	
 	public long getId() {
@@ -42,13 +43,13 @@ public class User {
 		return password;
 	}
 
-	public List<Order> getOrderList() {
-		return orderList;
-	}
-
+	
 	public WishList getWishList() {
 		return wishList;
 	}
 
+	public List<PlacedOrder> getOrderList() {
+		return orderList;
+	}
 	
 }

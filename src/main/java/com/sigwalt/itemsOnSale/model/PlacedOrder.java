@@ -8,11 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-@Entity(name = "PLACED_ORDER")
-public class Order {
+@Entity
+public class PlacedOrder {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY )
@@ -22,5 +23,20 @@ public class Order {
 	private LocalDate date;
 	@ManyToMany(targetEntity = Item.class)
 	private List<Item> item;
+	
+	public long getId() {
+		return id;
+	}
+	public User getUser() {
+		return user;
+	}
+	public LocalDate getDate() {
+		return date;
+	}
+	public List<Item> getItem() {
+		return item;
+	}
+	
+	
 	
 }
