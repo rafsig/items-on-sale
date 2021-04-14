@@ -2,8 +2,6 @@ package com.sigwalt.itemsOnSale.service.listOfItems;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.sigwalt.itemsOnSale.dto.ItemDto;
 import com.sigwalt.itemsOnSale.repository.IItemRepository;
 

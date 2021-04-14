@@ -4,11 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.ManyToMany;
-
-import com.sigwalt.itemsOnSale.model.Category;
 import com.sigwalt.itemsOnSale.model.Item;
-import com.sigwalt.itemsOnSale.model.PlacedOrder;
 
 public class ItemDto {
 
