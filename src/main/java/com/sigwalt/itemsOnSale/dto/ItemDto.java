@@ -10,7 +10,7 @@ import com.sigwalt.itemsOnSale.model.Category;
 import com.sigwalt.itemsOnSale.model.Item;
 import com.sigwalt.itemsOnSale.model.PlacedOrder;
 
-public class ListItemsDto {
+public class ItemDto {
 
 	private long id;
 	private String name;
@@ -19,7 +19,7 @@ public class ListItemsDto {
 	private BigDecimal discount = BigDecimal.ZERO;
 	private int rating;
 	
-	public ListItemsDto(Item item) {
+	public ItemDto(Item item) {
 		this.id = item.getId();
 		this.name = item.getName();
 		this.price = item.getPrice();
@@ -52,8 +52,8 @@ public class ListItemsDto {
 		return rating;
 	}
 	
-	public static List<ListItemsDto> convert(List<Item> itemsList){
-		return itemsList.stream().map(ListItemsDto::new).collect(Collectors.toList());
+	public static List<ItemDto> convert(List<Item> itemsList){
+		return itemsList.stream().map(ItemDto::new).collect(Collectors.toList());
 	}
 
 }
