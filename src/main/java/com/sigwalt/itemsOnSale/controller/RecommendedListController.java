@@ -20,8 +20,8 @@ import com.sigwalt.itemsOnSale.repository.IItemRepository;
 import com.sigwalt.itemsOnSale.repository.IUserRepository;
 import com.sigwalt.itemsOnSale.service.GetRecommendedItems;
 import com.sigwalt.itemsOnSale.service.GetRecommendedItemsHandler;
-import com.sigwalt.itemsOnSale.service.listOfItems.SalesItems;
-import com.sigwalt.itemsOnSale.service.listOfItems.UserPreferredCategoriesList;
+import com.sigwalt.itemsOnSale.service.listOfItems.HotDeals;
+import com.sigwalt.itemsOnSale.service.listOfItems.ItemsFormIntestCategories;
 import com.sigwalt.itemsOnSale.service.listOfItems.WishList;
 
 @RestController
@@ -37,7 +37,7 @@ public class RecommendedListController {
 	public ResponseEntity<Map<String, Page<ItemDto>>> getRecommendations(@PathVariable String userName,@PageableDefault(page=0, size=Integer.MAX_VALUE, sort="rating", direction=Direction.DESC) Pageable pagination) {
 		User user = userRepo.findByUserName(userName);
 		GetRecommendedItems getRecommendedItems = new GetRecommendedItems(this.itemRepo, pagination);
-		Map<String, Page<ItemDto>> recommendedItems = new GetRecommendedItemsHandler(getRecommendedItems, Arrays.asList(new SalesItems(), new UserPreferredCategoriesList(), new WishList())).execute(user.getId());
+		Map<String, Page<ItemDto>> recommendedItems = new GetRecommendedItemsHandler(getRecommendedItems, Arrays.asList(new HotDeals(), new ItemsFormIntestCategories(), new WishList())).execute(user.getId());
 		return  ResponseEntity.ok(recommendedItems);
 	}
 	
