@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class WishList {
@@ -17,6 +18,8 @@ public class WishList {
 	private long id;
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Item> itemList;
+	@OneToOne(mappedBy = "wishList")
+	private User user;
 	
 	public long getId() {
 		return id;

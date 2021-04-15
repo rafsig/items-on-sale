@@ -24,6 +24,8 @@ public class Item {
 	private List<Category> category;
 	@ManyToMany(targetEntity = PlacedOrder.class, mappedBy = "item")
 	private List<PlacedOrder> order;
+	@ManyToMany(targetEntity = WishList.class, mappedBy = "itemList")
+	private List<WishList> wishList;
 	
 	public long getId() {
 		return id;

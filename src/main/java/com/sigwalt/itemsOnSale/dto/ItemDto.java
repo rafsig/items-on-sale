@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+
 import com.sigwalt.itemsOnSale.model.Item;
 
 public class ItemDto {
@@ -48,8 +50,8 @@ public class ItemDto {
 		return rating;
 	}
 	
-	public static List<ItemDto> convert(List<Item> itemsList){
-		return itemsList.stream().map(ItemDto::new).collect(Collectors.toList());
+	public static Page<ItemDto> convert(Page<Item> itemsList){
+		return itemsList.map(ItemDto::new);
 	}
 
 }
