@@ -36,9 +36,9 @@ public class RecommendedListController {
 	IItemRepository itemRepo;
 
 
-	@GetMapping(path = "/{userName}")
-	public ResponseEntity<Map<String, Page<ItemDto>>> getRecommendations(@PathVariable String userName,@PageableDefault(page=0, size=Integer.MAX_VALUE, sort="rating", direction=Direction.DESC) Pageable pagination) {
-		Optional<User> userOptional = userRepo.findByUserName(userName);
+	@GetMapping(path = "/{userId}")
+	public ResponseEntity<Map<String, Page<ItemDto>>> getRecommendations(@PathVariable Long userId,@PageableDefault(page=0, size=Integer.MAX_VALUE, sort="rating", direction=Direction.DESC) Pageable pagination) {
+		Optional<User> userOptional = userRepo.findById(userId);
 		if(userOptional.isPresent()) {
 			User user = userOptional.get();
 			GetRecommendedItems getRecommendedItems = new GetRecommendedItems(this.itemRepo, pagination);

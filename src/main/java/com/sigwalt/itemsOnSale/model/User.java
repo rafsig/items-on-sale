@@ -2,12 +2,14 @@ package com.sigwalt.itemsOnSale.model;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -27,8 +29,16 @@ public class User implements UserDetails {
 	private WishList wishList;
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<PlacedOrder> orderList;
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Set<Profile> role;
 	
 	
+	
+	
+	public Set<Profile> getRoles() {
+		return role;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -51,7 +61,7 @@ public class User implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+		return role;
 	}
 
 	@Override
