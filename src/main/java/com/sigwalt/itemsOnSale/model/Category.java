@@ -14,13 +14,13 @@ public class Category {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY )
-	private long id;
+	private Long id;
 	private String name;
 	@ManyToMany(mappedBy = "category")
 	@Column(name = "item")
 	private List<Item> itemList;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public String getName() {

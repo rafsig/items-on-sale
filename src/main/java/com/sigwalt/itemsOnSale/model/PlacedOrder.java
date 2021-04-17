@@ -15,14 +15,14 @@ public class PlacedOrder {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY )
-	private long id;
+	private Long id;
 	@ManyToOne(targetEntity = User.class)
 	private User user;
 	private LocalDate date;
 	@ManyToMany(targetEntity = Item.class)
 	private List<Item> item;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public User getUser() {

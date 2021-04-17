@@ -2,6 +2,7 @@ package com.sigwalt.itemsOnSale.controller;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,6 +12,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +27,7 @@ import com.sigwalt.itemsOnSale.service.listOfItems.ItemsFormIntestCategories;
 import com.sigwalt.itemsOnSale.service.listOfItems.WishList;
 
 @RestController
+@RequestMapping("/recommendations")
 public class RecommendedListController {
 	
 	@Autowired
@@ -33,12 +36,17 @@ public class RecommendedListController {
 	IItemRepository itemRepo;
 
 
-	@GetMapping(path = "/recommendations/{userName}")
+	@GetMapping(path = "/{userName}")
 	public ResponseEntity<Map<String, Page<ItemDto>>> getRecommendations(@PathVariable String userName,@PageableDefault(page=0, size=Integer.MAX_VALUE, sort="rating", direction=Direction.DESC) Pageable pagination) {
-		User user = userRepo.findByUserName(userName);
-		GetRecommendedItems getRecommendedItems = new GetRecommendedItems(this.itemRepo, pagination);
-		Map<String, Page<ItemDto>> recommendedItems = new GetRecommendedItemsHandler(getRecommendedItems, Arrays.asList(new HotDeals(), new ItemsFormIntestCategories(), new WishList())).execute(user.getId());
-		return  ResponseEntity.ok(recommendedItems);
+		Optional<User> userOptional = userRepo.findByUserName(userName);
+		if(userOptional.isPresent()) {
+			User user = userOptional.get();
+			GetRecommendedItems getRecommendedItems = new GetRecommendedItems(this.itemRepo, pagination);
+			Map<String, Page<ItemDto>> recommendedItems = new GetRecommendedItemsHandler(getRecommendedItems, Arrays.asList(new HotDeals(), new ItemsFormIntestCategories(), new WishList())).execute(user.getId());
+			return  ResponseEntity.ok(recommendedItems);
+		}
+		
+		return null;
 	}
 	
 }

@@ -14,7 +14,7 @@ public class Item {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY )
-	private long id;
+	private Long id;
 	private String name;
 	private BigDecimal price;
 	private boolean sale;
@@ -27,7 +27,7 @@ public class Item {
 	@ManyToMany(targetEntity = WishList.class, mappedBy = "itemList")
 	private List<WishList> wishList;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public String getName() {

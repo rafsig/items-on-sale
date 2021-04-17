@@ -15,13 +15,13 @@ public class WishList {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY )
-	private long id;
+	private Long id;
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Item> itemList;
 	@OneToOne(mappedBy = "wishList")
 	private User user;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

@@ -1,6 +1,8 @@
 insert into wish_list DEFAULT VALUES;
 
-insert into User (user_Name, email, password, wish_list_id) values ('user1', 'user1@email.com', 'password123', 1);
+
+--password is "password"
+insert into User (user_Name, email, password, wish_list_id) values ('user1', 'user1@email.com', '$2a$10$0lrsEbGppk0850neERuRW.uFiFrvcLrknEL72hVlVPdheEqN7Swvm', 1);
 
 
 insert into Item (name, price, sale, discount, rating) values ('Small Monitor', '150.00', true, .10, 1);
