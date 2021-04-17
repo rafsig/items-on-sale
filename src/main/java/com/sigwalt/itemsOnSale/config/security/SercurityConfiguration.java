@@ -47,6 +47,7 @@ public class SercurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers(HttpMethod.POST, "/auth").permitAll()
+		.antMatchers(HttpMethod.GET, "/swagger-ui.html").permitAll()
 		.antMatchers(HttpMethod.GET,"/actuator/**").hasAuthority("ROLE_ADMIN")
 		.anyRequest().authenticated()
 		.and().cors()
@@ -69,5 +70,11 @@ public class SercurityConfiguration extends WebSecurityConfigurerAdapter {
 	        source.registerCorsConfiguration("/**", new CorsConfiguration().setAllowedOriginPatterns(Arrays.asList(cors)));
 	        return source;
 	    }
+	 
+	 @Override
+		public void configure(WebSecurity web) throws Exception {
+			web.ignoring()
+				.antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**", "/h2-console/*.jsp*","/h2-console/*.gif*", "/h2-console/*.jsp*","/h2-console/*.do*" );
+		}
 	
 }
