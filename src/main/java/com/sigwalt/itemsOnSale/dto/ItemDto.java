@@ -1,8 +1,6 @@
 package com.sigwalt.itemsOnSale.dto;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 

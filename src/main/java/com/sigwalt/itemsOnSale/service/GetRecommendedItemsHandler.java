@@ -4,12 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import com.sigwalt.itemsOnSale.dto.ItemDto;
-import com.sigwalt.itemsOnSale.repository.IItemRepository;
 import com.sigwalt.itemsOnSale.service.listOfItems.ListOfItemsToBeRetrieved;
 
 public class GetRecommendedItemsHandler {

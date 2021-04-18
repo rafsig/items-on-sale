@@ -9,7 +9,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sigwalt.itemsOnSale.config.security.TokenService;
 import com.sigwalt.itemsOnSale.dto.TokenDto;
 import com.sigwalt.itemsOnSale.form.CredentialsForm;
+
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/auth")
@@ -29,6 +30,7 @@ public class AuthenticationController {
 	private TokenService tokenService;
 
 	@PostMapping
+	@ApiOperation(value = "Authenticates a user with a username and password, returns a jwt token")
 	public ResponseEntity<?> auth(@Valid @RequestBody  CredentialsForm credentials){
 		UsernamePasswordAuthenticationToken loginCredentials = credentials.convert();
 		try {

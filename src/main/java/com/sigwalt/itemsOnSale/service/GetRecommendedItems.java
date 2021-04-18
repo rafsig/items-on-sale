@@ -1,9 +1,7 @@
 package com.sigwalt.itemsOnSale.service;
 
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.Repository;
 
-import com.sigwalt.itemsOnSale.model.Item;
 import com.sigwalt.itemsOnSale.repository.IItemRepository;
 
 public class GetRecommendedItems {
