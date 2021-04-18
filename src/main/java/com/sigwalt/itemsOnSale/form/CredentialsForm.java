@@ -1,10 +1,17 @@
 package com.sigwalt.itemsOnSale.form;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
+
 
 public class CredentialsForm {
 	
+	@NotNull @NotEmpty
 	private String userName;
+	@NotNull @NotEmpty
 	private String password;
 	
 	

@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import com.sigwalt.itemsOnSale.dto.ItemDto;
 import com.sigwalt.itemsOnSale.repository.IItemRepository;
 
-public class ItemsFormIntestCategories implements ListOfItemsToBeRetrieved {
+public class ItemsFromIntestCategories implements ListOfItemsToBeRetrieved {
 
 	@Override
 	public Page<ItemDto> execute(long userId, IItemRepository itemRepo, Pageable pagination) {

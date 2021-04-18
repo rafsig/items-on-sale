@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,6 +23,7 @@ public class User implements UserDetails {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	@Column(unique = true)
 	private String userName;
 	private String email;
 	private String password;
@@ -31,9 +33,6 @@ public class User implements UserDetails {
 	private List<PlacedOrder> orderList;
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Profile> role;
-	
-	
-	
 	
 	public Set<Profile> getRoles() {
 		return role;
@@ -93,5 +92,27 @@ public class User implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setWishList(WishList wishList) {
+		this.wishList = wishList;
+	}
+
+	public void setOrderList(List<PlacedOrder> orderList) {
+		this.orderList = orderList;
+	}
+	
+	
 	
 }

@@ -23,7 +23,7 @@ import com.sigwalt.itemsOnSale.repository.IUserRepository;
 import com.sigwalt.itemsOnSale.service.GetRecommendedItems;
 import com.sigwalt.itemsOnSale.service.GetRecommendedItemsHandler;
 import com.sigwalt.itemsOnSale.service.listOfItems.HotDeals;
-import com.sigwalt.itemsOnSale.service.listOfItems.ItemsFormIntestCategories;
+import com.sigwalt.itemsOnSale.service.listOfItems.ItemsFromIntestCategories;
 import com.sigwalt.itemsOnSale.service.listOfItems.WishList;
 
 @RestController
@@ -42,11 +42,11 @@ public class RecommendedListController {
 		if(userOptional.isPresent()) {
 			User user = userOptional.get();
 			GetRecommendedItems getRecommendedItems = new GetRecommendedItems(this.itemRepo, pagination);
-			Map<String, Page<ItemDto>> recommendedItems = new GetRecommendedItemsHandler(getRecommendedItems, Arrays.asList(new HotDeals(), new ItemsFormIntestCategories(), new WishList())).execute(user.getId());
+			Map<String, Page<ItemDto>> recommendedItems = new GetRecommendedItemsHandler(getRecommendedItems, Arrays.asList(new HotDeals(), new ItemsFromIntestCategories(), new WishList())).execute(user.getId());
 			return  ResponseEntity.ok(recommendedItems);
 		}
 		
-		return null;
+		return ResponseEntity.notFound().build();
 	}
 	
 }
